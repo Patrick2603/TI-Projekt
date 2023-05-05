@@ -1,3 +1,14 @@
+/**
+ * @file main.c
+ * @author Patrick Schöttle (patrick.p.schoettle@gmail.com)
+ * @brief
+ * @version 0.1
+ * @date 2023-05-05
+ *
+ * @copyright Copyright (c) 2023
+ *
+ */
+
 #include <stdio.h>
 #include <stdint.h>
 #include <stddef.h>
@@ -74,7 +85,7 @@ static esp_err_t mqtt_event_handler_cb(esp_mqtt_event_handle_t event)
     case MQTT_EVENT_CONNECTED:
         ESP_LOGI(TAG, "MQTT_EVENT_CONNECTED");
         esp_mqtt_client_subscribe(client, "my_topic", 0);
-        esp_mqtt_client_publish(client, "my_topic", "Hi to all from ESP32 .........", 0, 1, 0);
+        esp_mqtt_client_publish(client, "my_topic", "Hi to all from ESP32 .....", 0, 1, 0);
         break;
     case MQTT_EVENT_DISCONNECTED:
         ESP_LOGI(TAG, "MQTT_EVENT_DISCONNECTED");
@@ -105,14 +116,14 @@ static esp_err_t mqtt_event_handler_cb(esp_mqtt_event_handle_t event)
 
 static void mqtt_event_handler(void *handler_args, esp_event_base_t base, int32_t event_id, void *event_data)
 {
-    ESP_LOGD(TAG, "Event dispatched from event loop base=%s, event_id=%d", base, event_id);
+    // ESP_LOGD(TAG, "Event dispatched from event loop base=%s, event_id=%d", base, event_id);
     mqtt_event_handler_cb(event_data);
 }
 
 static void mqtt_app_start(void)
 {
     const esp_mqtt_client_config_t mqtt_cfg = {
-        .uri = BROKER,
+        .broker.address.uri = BROKER,
     };
     esp_mqtt_client_handle_t client = esp_mqtt_client_init(&mqtt_cfg);
     esp_mqtt_client_register_event(client, ESP_EVENT_ANY_ID, mqtt_event_handler, client);

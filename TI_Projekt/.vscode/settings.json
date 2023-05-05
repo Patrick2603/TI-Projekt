@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "freertos.h": "c",
-        "semphr.h": "c"
+        "semphr.h": "c",
+        "esp_log.h": "c"
     }
 }
