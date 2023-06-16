@@ -12,8 +12,8 @@
 #ifndef WIFI_CREDENTIALS_H
 #define WIFI_CREDENTIALS_H
 
-#define SSID "yourSSID"
-#define PASS "yourPassword"
+#define SSID "XiaomiMI9t"
+#define PASS "12345678"
 
 #endif
 
